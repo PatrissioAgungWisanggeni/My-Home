@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="px-28">
+    <img src="/media/image/Frame 34923.png" alt="logo" class="mx-auto d-block my-4" />
+    <hr style="border-color: #B16E39; border-width: 9px;" />
+    <img src="{{ coffee_shop.gambar }}" alt="gambar" class="w-1/2 mx-auto" />
+    <section class="mt-5">
+      <div>
+        <h1>{{ coffee_shop.nama }}</h1>
+        <p class="text-2xl">{{ coffee_shop.alamat }}</p>
+      </div>
+      <hr style="border-color: #B16E39; border-width: 9px;" />
+      <div>
+        <h2>Deskripsi</h2>
+        <p class="text-xl text-justify">{{coffee_shop.deskripsi}}</p>
+      </div>
+      <hr style="border-color: #B16E39; border-width: 9px;" />
+      <div>
+        <h2>Fasilitas</h2>
+        <div class="w-2/3 mt-4">
+          <ul class="grid grid-cols-9 gap-7">
+            {% if coffee_shop.wifi == 'Ya' %}
+            <li>
+              <div class="text-center text-xl">
+                <i class="fa-solid fa-wifi text-4xl" style="color: #266be3;"></i>
+                <p>Wifi</p>
+              </div>
+            </li>
+            {% endif %}
+            {% if coffee_shop.toilet == 'Ya' %}
+            <li>
+              <div class="text-center text-xl">
+                <i class="fa-solid fa-restroom text-4xl" style="color: #266be3;"></i>
+                <p>Toilet</p>
+              </div>
+            </li>
+            {% endif %}
+            {% if coffee_shop.halaman_parkir == "Ya" %}
+            <li>
+              <div class="text-center text-xl">
+                <i class="fa-solid fa-square-parking text-4xl" style="color: #266be3;"></i>
+                <p>Halaman Parkir</p>
+              </div>
+            </li>
+            {% endif %}
+            {% if coffee_shop.kabel_terminal == "Ya" %}
+            <li>
+              <div class="text-center text-xl">
+                <i class="fa-solid fa-bolt text-4xl" style="color: #266be3;"></i>
+                <p>Kabel terminal</p>
+              </div>
+            </li>
+            {% endif %}
+            {% if coffee_shop.ruang_lesehan == "Ya" %}
+            <li>
+              <div class="text-center text-xl">
+                <i class="fa-solid fa-rug text-4xl" style="color:#266be3"></i>
+                <p>Ruang Lesehan</p>
+              </div>
+            </li>
+            {% endif %}
+            {% if coffee_shop.ruang_ac == "Ya" %}
+            <li>
+              <div class="text-center text-xl flex flex-col items-center">
+                <svg style="color:#266be3" width="50" height="50" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="IconChangeColor">
+                  <path d="M22 3.6V11H2V3.6C2 3.26863 2.26863 3 2.6 3H21.4C21.7314 3 22 3.26863 22 3.6Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" id="mainIconPathAttribute"></path>
+                  <path d="M18 7H19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" id="mainIconPathAttribute"></path>
+                  <path d="M2 11L2.78969 13.5844C3.04668 14.4255 3.82294 15 4.70239 15H6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" id="mainIconPathAttribute"></path>
+                  <path d="M22 11L21.2103 13.5844C20.9533 14.4255 20.1771 15 19.2976 15H18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" id="mainIconPathAttribute"></path>
+                  <path d="M9.5 14.5C9.5 14.5 9.5 21.5 6 21.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" id="mainIconPathAttribute"></path>
+                  <path d="M14.5 14.5C14.5 14.5 14.5 21.5 18 21.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" id="mainIconPathAttribute"></path>
+                  <path d="M12 14.5V21.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" id="mainIconPathAttribute"></path>
+                </svg>
+                <p>Ruang AC</p>
+              </div>
+            </li>
+            {% endif %}
+            {% if coffee_shop.live_music == "Ya" %}
+            <li>
+              <div class="text-center text-xl">
+                <i class="fa-solid fa-music text-4xl" style="color:#266be3"></i>
+                <p>Live Music</p>
+              </div>
+            </li>
+            {% endif %}
+            {% if coffee_shop.hiburan == "Ya" %}
+            <li>
+              <div class="text-center text-xl">
+                <i class="fa-solid fa-dice text-4xl" style="color:#266be3"></i>
+                <p>Hiburan</p>
+              </div>
+            </li>
+            {% endif %}
+            {% if coffee_shop.mushola == "Ya" %}
+            <li>
+              <div class="text-center text-xl">
+                <i class="fa-solid fa-mosque text-4xl" style="color:#266be3"></i>
+                <p>Mushola</p>
+              </div>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </section>
+    <hr style="border-color: #B16E39; border-width: 9px;" />
+    <section class="mb-5">
+      <h2>Rekomendasi Untukmu</h2>
+      <div class="grid grid-cols-4 gap-16 mt-4">
+        {% for data_coffee, similarity in rekomendasi %}
+          <div>
+            <a href="{% url 'detail' id=data_coffee.id %}?from_search=1" class="text-black no-underline">
+              <img src="{{data_coffee.gambar}}" class="w-full h-50 object-cover mb-3" />
+              <h2>{{ data_coffee.nama }}</h2>
+              <div class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                <span class="ml-2"><b>{{ data_coffee.alamat }}</b></span>
+              </div>
+              <p class="text-xl text-justify truncate line-clamp-3">{{data_coffee.deskripsi}}</p>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+{% endblock %}
