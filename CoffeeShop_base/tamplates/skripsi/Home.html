@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body style="background-image: url('/media/image/background.png')" class="bg-cover bg-no-repeat">
+  <section class="relative top-36 flex items-center h-72 w-2/3" style="background-color: #673300;">
+    <div class="ml-40 mr-20">
+      <h1 class="text-7xl text-white font-bold">TEMUKAN COFFEE SHOP DENGAN COFFEE FINDER</h1>
+    </div>
+  </section>
+  <section class="relative items-center mt-44 h-32 w-1/2">
+    <div class="ml-40 mr-36">
+      <p class="text-4xl text-white text-justify">Temukan Kafe Terbaik yang Menawarkan Kopi Berkualitas dan Kenikmatan
+        yang Tak Terlupakan</p>
+    </div>
+    <a href="{% url 'beranda' %}">
+      <button class="ml-40 mt-16 rounded-xl h-20 w-3/6 text-white text-center text-4xl" style="background-color: #C7874D;">Temukan Sekarang</button>
+    </a>
+    </section>
+</body>
+
+</html>
